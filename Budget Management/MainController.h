@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MainController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *budget;
+@property (weak, nonatomic) IBOutlet UILabel *month;
 
 @end
 
