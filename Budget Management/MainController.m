@@ -38,9 +38,6 @@
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
-    if (self.monthData){
-        NSLog(self.monthData);
-    }
     self.db = [FIRFirestore firestore];
     [self fetchData];
 }
@@ -75,6 +72,9 @@
               NSLog(@"Error getting documents: %@", error);
             } else {
               for (FIRDocumentSnapshot *document in snapshot.documents) {
+                  if (self.monthData && self.monthData != document.documentID) {
+                      continue;
+                  }
                   self.currentBudget = document.data[@"current"];
                   self.totalBudget = document.data[@"total"];
                   self.monthData = document.documentID;
@@ -85,8 +85,9 @@
             }
         }];
 }
-- (void)sendSelectedMonth:(NSString*)month {
-    NSLog(@"%@", month);
+- (void)sendSelectedMonth:(NSString*) month {
+    self.monthData = month;
+    [self fetchData];
 }
 
 //- (IBAction)upload_budget:(id)sender {

@@ -26,7 +26,7 @@
     NSString* uid = user.uid;
     FIRFirestore *db = [FIRFirestore firestore];
     [[[[[db collectionWithPath:@"budget-management"] documentWithPath:uid] collectionWithPath:@"budget"] documentWithPath: self.monthTextField.text] setData:@{
-        @"original": @([self.budgetTextField.text intValue]),
+        @"total": @([self.budgetTextField.text intValue]),
         @"current": @([self.budgetTextField.text intValue]),
       } completion:^(NSError * _Nullable error) {
         if (error != nil) {
@@ -79,10 +79,6 @@
     
     self.monthTable.dataSource = self;
     self.monthTable.delegate = self;
-}
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    MainController *destinationVC = segue.destinationViewController;
-    destinationVC.monthData = self.selectedMonth;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
