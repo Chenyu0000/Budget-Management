@@ -9,10 +9,11 @@
 @import FirebaseAuth;
 @import FirebaseCore;
 @import FirebaseFirestore;
-
+#import "MainController.h"
 @interface ManageMonthViewController ()
 @property FIRFirestore *db;
 @property NSMutableArray *months;
+
 @end
 
 @implementation ManageMonthViewController
@@ -79,16 +80,11 @@
     self.monthTable.dataSource = self;
     self.monthTable.delegate = self;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    MainController *destinationVC = segue.destinationViewController;
+    destinationVC.monthData = self.selectedMonth;
 }
-*/
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.months.count;
 }
@@ -99,6 +95,8 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.delegate sendSelectedMonth:self.months[indexPath.row]];
+    [self.navigationController popViewControllerAnimated:YES];
     return;
 }
 @end
