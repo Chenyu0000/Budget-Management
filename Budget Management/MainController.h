@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MainController : UIViewController 
+@interface MainController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *budget;
 @property (weak, nonatomic) IBOutlet UILabel *month;
 @property NSString* monthData;

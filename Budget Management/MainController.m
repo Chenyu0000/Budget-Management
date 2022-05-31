@@ -16,7 +16,9 @@
 @property FIRFirestore *db;
 @property NSNumber* currentBudget;
 @property NSNumber* totalBudget;
-
+@property NSMutableArray* wishList;
+@property (weak, nonatomic) IBOutlet UITableView *boughtTableView;
+@property (weak, nonatomic) IBOutlet UITableView *wishlistTableView;
 
 @end
 
@@ -40,6 +42,10 @@
     }
     self.db = [FIRFirestore firestore];
     [self fetchData];
+    self.boughtTableView.delegate = self;
+    self.wishlistTableView.delegate = self;
+    self.boughtTableView.dataSource = self;
+    self.wishlistTableView.dataSource = self;
 }
 
 //- (void)getMultipleAll {
@@ -89,6 +95,29 @@
     self.monthData = month;
     [self fetchData];
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (tableView == self.boughtTableView) {
+        return 3;
+    }else {
+        return 2;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)section {
+    if (tableView == self.boughtTableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"boughtCell"];
+        cell.textLabel.text = @"bought Item";
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"wishlistCell"];
+        cell.textLabel.text = @"wishlist";
+        return cell;
+    }
+//    cell.textLabel.text = self.months[section.row];
+
+}
+
 
 //- (IBAction)upload_budget:(id)sender {
 //    FIRUser *user = [FIRAuth auth].currentUser;
