@@ -61,11 +61,18 @@
         return;
     }
     self.db = [FIRFirestore firestore];
+
     [self fetchData];
     self.boughtTableView.delegate = self;
     self.wishlistTableView.delegate = self;
     self.boughtTableView.dataSource = self;
     self.wishlistTableView.dataSource = self;
+    
+    FIRDocumentReference* launchRef = [[self.db collectionWithPath:@"analytics"] documentWithPath:@"launch"];
+    [launchRef getDocumentWithCompletion:^(FIRDocumentSnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        NSNumber* count = snapshot.data[@"count"];
+        [launchRef setData:@{@"count":[NSNumber numberWithInt:[count intValue] + 1]}];
+    }];
 }
 
 
@@ -111,12 +118,32 @@
                   self.monthData = document.documentID;
                   self.month.text = self.monthData;
                   self.budget.text = [NSString stringWithFormat:@"$%@/$%@", [self.currentBudget stringValue], [self.totalBudget stringValue] ];
+                  [[budgetRef documentWithPath:self.monthData]
+                      addSnapshotListener:^(FIRDocumentSnapshot *snapshot, NSError *error) {
+                        if (snapshot == nil) {
+                          NSLog(@"Error fetching document: %@", error);
+                          return;
+                        }
+                        NSLog(@"Current data: %@", snapshot.data);
+                      [budgetRef getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+                              for (FIRDocumentSnapshot *document in snapshot.documents) {
+                                  if (self.monthData && self.monthData != document.documentID) {
+                                      continue;
+                                  }
+                                  self.currentBudget = document.data[@"current"];
+                                  self.totalBudget = document.data[@"total"];
+                                  self.monthData = document.documentID;
+                                  self.month.text = self.monthData;
+                                  self.budget.text = [NSString stringWithFormat:@"$%@/$%@", [self.currentBudget stringValue], [self.totalBudget stringValue] ];
+                              }
+                      }];
+                  }];
                   [self fetchWishItem];
                   [self fetchBoughtItem];
                   break;
-              }
             }
-        }];
+        }
+    }];
 }
 
 - (void) fetchBoughtItem {
