@@ -68,6 +68,9 @@
     // Do any additional setup after loading the view.
     self.titleLabel.text = self.titleText;
 }
+- (IBAction)crashButtonTapped:(id)sender {
+    @[][1];
+}
 
 /*
 #pragma mark - Navigation

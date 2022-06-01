@@ -424,6 +424,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bT-Ny-8AJ">
+                                <rect key="frame" x="138" y="801" width="119" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Test Crash"/>
+                                <connections>
+                                    <action selector="crashButtonTapped:" destination="xkh-D7-5Pr" eventType="touchUpInside" id="Zji-6H-ead"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vaZ-Mn-pnI">
                                 <rect key="frame" x="171" y="696" width="73" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -463,12 +472,18 @@
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="delete"/>
+                                <connections>
+                                    <action selector="handleDeleteWishItem:" destination="lSN-D8-zsO" eventType="touchUpInside" id="UXx-3d-2dR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NuZ-Zp-TCO">
                                 <rect key="frame" x="71" y="94" width="216" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Move to bought item!"/>
+                                <connections>
+                                    <action selector="handleMoveWishItem:" destination="lSN-D8-zsO" eventType="touchUpInside" id="JBa-PJ-llo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtZ-QU-bhJ">
                                 <rect key="frame" x="0.0" y="184" width="414" height="21"/>
@@ -527,11 +542,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Edit"/>
+                                <connections>
+                                    <action selector="handleEditWishItem:" destination="lSN-D8-zsO" eventType="touchUpInside" id="aLt-HR-faU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Jh-eA-Efu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="nameField" destination="9Dd-dh-jf2" id="PpH-IR-ny0"/>
+                        <outlet property="preferenceField" destination="sOe-Qf-1W9" id="tZ2-gP-UKx"/>
+                        <outlet property="priceField" destination="eWB-5h-XZg" id="cSe-FV-kxl"/>
+                        <outlet property="urlField" destination="YxY-ww-8Id" id="wwu-M2-5Vw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zcn-rz-E5A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

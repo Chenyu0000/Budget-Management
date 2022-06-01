@@ -68,6 +68,7 @@
     self.wishlistTableView.dataSource = self;
 }
 
+
 //- (void)getMultipleAll {
 //  // [START get_multiple_all]
 //  [[self.db collectionWithPath:@"cities"]
@@ -170,12 +171,14 @@
         return cell;
     }
 //    cell.textLabel.text = self.months[section.row];
-
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView == self.wishlistTableView) {
         WishItemDetailController *vc=[self.storyboard instantiateViewControllerWithIdentifier:@"itemEdit"];
+        vc.month = self.monthData;
+        vc.itemId = self.wishIdList[indexPath.row];
+        vc.delegate = self;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
