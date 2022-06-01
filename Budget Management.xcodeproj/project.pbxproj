@@ -16,6 +16,8 @@
 		4B79D8CB28442223003DEC9A /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79D8CA28442223003DEC9A /* SignUpController.m */; };
 		4B79D8CE28454F94003DEC9A /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79D8CD28454F94003DEC9A /* MainController.m */; };
 		4B79D8D42845626C003DEC9A /* ManageMonthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79D8D32845626C003DEC9A /* ManageMonthViewController.m */; };
+		4B79D8DA2846D2DA003DEC9A /* WishItemDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79D8D92846D2DA003DEC9A /* WishItemDetailController.m */; };
+		4B79D8E02846D355003DEC9A /* ItemAddController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B79D8DF2846D355003DEC9A /* ItemAddController.m */; };
 		4BCE25302842C216004C3841 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE252F2842C216004C3841 /* AppDelegate.m */; };
 		4BCE25332842C216004C3841 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE25322842C216004C3841 /* SceneDelegate.m */; };
 		4BCE25362842C216004C3841 /* SignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCE25352842C216004C3841 /* SignInController.m */; };
@@ -33,6 +35,10 @@
 		4B79D8CD28454F94003DEC9A /* MainController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
 		4B79D8D22845626C003DEC9A /* ManageMonthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManageMonthViewController.h; sourceTree = "<group>"; };
 		4B79D8D32845626C003DEC9A /* ManageMonthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManageMonthViewController.m; sourceTree = "<group>"; };
+		4B79D8D82846D2DA003DEC9A /* WishItemDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WishItemDetailController.h; sourceTree = "<group>"; };
+		4B79D8D92846D2DA003DEC9A /* WishItemDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WishItemDetailController.m; sourceTree = "<group>"; };
+		4B79D8DE2846D355003DEC9A /* ItemAddController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemAddController.h; sourceTree = "<group>"; };
+		4B79D8DF2846D355003DEC9A /* ItemAddController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemAddController.m; sourceTree = "<group>"; };
 		4BCE252B2842C216004C3841 /* Budget Management.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Budget Management.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCE252E2842C216004C3841 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BCE252F2842C216004C3841 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -100,6 +106,10 @@
 				4B79D8CD28454F94003DEC9A /* MainController.m */,
 				4B79D8D22845626C003DEC9A /* ManageMonthViewController.h */,
 				4B79D8D32845626C003DEC9A /* ManageMonthViewController.m */,
+				4B79D8D82846D2DA003DEC9A /* WishItemDetailController.h */,
+				4B79D8D92846D2DA003DEC9A /* WishItemDetailController.m */,
+				4B79D8DE2846D355003DEC9A /* ItemAddController.h */,
+				4B79D8DF2846D355003DEC9A /* ItemAddController.m */,
 			);
 			path = "Budget Management";
 			sourceTree = "<group>";
@@ -190,7 +200,9 @@
 				4BCE25302842C216004C3841 /* AppDelegate.m in Sources */,
 				4B79D8CB28442223003DEC9A /* SignUpController.m in Sources */,
 				4BCE25412842C218004C3841 /* main.m in Sources */,
+				4B79D8E02846D355003DEC9A /* ItemAddController.m in Sources */,
 				4B79D8CE28454F94003DEC9A /* MainController.m in Sources */,
+				4B79D8DA2846D2DA003DEC9A /* WishItemDetailController.m in Sources */,
 				4BCE25332842C216004C3841 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
