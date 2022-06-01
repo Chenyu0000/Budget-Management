@@ -25,7 +25,8 @@
     }
     NSString* uid = user.uid;
     FIRFirestore *db = [FIRFirestore firestore];
-    [[[[[db collectionWithPath:@"budget-management"] documentWithPath:uid] collectionWithPath:@"budget"] documentWithPath: self.monthTextField.text] setData:@{
+    FIRCollectionReference * current_budget = [[[db collectionWithPath:@"budget-management"] documentWithPath:uid] collectionWithPath:@"budget"];
+    [[current_budget documentWithPath: self.monthTextField.text] setData:@{
         @"total": @([self.budgetTextField.text intValue]),
         @"current": @([self.budgetTextField.text intValue]),
       } completion:^(NSError * _Nullable error) {
@@ -34,8 +35,21 @@
         } else {
           NSLog(@"Document added with ID: %@", uid);
         }
+        
+        [[[current_budget documentWithPath: self.monthTextField.text] collectionWithPath:@"bought"] addDocumentWithData:@{
+            @"url": @"",
+            @"price": @0,
+            @"name":@"placeholder",
+            @"preference":@0,
+          } completion:^(NSError * _Nullable error) {
+            if (error != nil) {
+              NSLog(@"Error adding document: %@", error);
+            } else {
+              NSLog(@"Document added with ID: %@", uid);
+            }
+          }];
+        [self fetchData];
       }];
-    [self fetchData];
 }
 
 - (FIRCollectionReference*) getBudgetCollectionRef {

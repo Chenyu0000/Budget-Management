@@ -154,6 +154,9 @@
               NSLog(@"Error getting documents: %@", error);
             } else {
               for (FIRDocumentSnapshot *document in snapshot.documents) {
+                  if ([document.data[@"name"]  isEqual: @"placeholder"]) {
+                      continue;
+                  }
                   [self.boughtList addObject:@{@"name":document.data[@"name"], @"preference":document.data[@"preference"],@"price":document.data[@"price"],@"url":document.data[@"url"]}];
                   [self.boughtIdList addObject:document.documentID];
               }
@@ -218,96 +221,5 @@
 - (void)sendFetchData{
     [self fetchData];
 }
-
-
-//- (IBAction)upload_budget:(id)sender {
-//    FIRUser *user = [FIRAuth auth].currentUser;
-//    if (!user) {
-//        NSLog(@"not signed in");
-//        return;
-//    }
-//    NSString* uid = user.uid;
-//    FIRFirestore *db = [FIRFirestore firestore];
-//    [[[[[db collectionWithPath:@"budget-management"] documentWithPath:uid] collectionWithPath:@"budget"] documentWithPath: @"2022-05"] setData:@{
-//        @"original": @2500,
-//        @"current": @2500
-//      } completion:^(NSError * _Nullable error) {
-//        if (error != nil) {
-//          NSLog(@"Error adding document: %@", error);
-//        } else {
-//          NSLog(@"Document added with ID: %@", uid);
-//        }
-//      }];
-////    FIRCollectionReference *messageRef =
-////        [[[db collectionWithPath:@"budget"] documentWithPath:uid]
-////        collectionWithPath:@"2022-05"];
-////    __block FIRDocumentReference *ref1 =
-////        [messageRef addDocumentWithData:@{
-////
-////        } completion:^(NSError * _Nullable error) {
-////          if (error != nil) {
-////            NSLog(@"Error adding document: %@", error);
-////          } else {
-////            NSLog(@"Document added with ID: %@", ref1.documentID);
-////          }
-////        }];
-//}
-//- (IBAction)upload_bought_item:(id)sender {
-//    FIRUser *user = [FIRAuth auth].currentUser;
-//    if (!user) {
-//        NSLog(@"not signed in");
-//        return;
-//    }
-//    NSString* uid = user.uid;
-//
-//    FIRFirestore *db = [FIRFirestore firestore];
-//    FIRCollectionReference * current_budget = [[[db collectionWithPath:@"budget-management"] documentWithPath:uid] collectionWithPath:@"budget"];
-//    [[[current_budget documentWithPath: @"2022-05"] collectionWithPath:@"bought"] addDocumentWithData:@{
-//        @"url": @"https://www.amazon.com/dp/B0796RCTMT/?coliid=I39GCPKMXCNX1L&colid=32R1W59E0VC5F&ref_=lv_cv_lig_dp_it&th=1",
-//        @"price": @100,
-//        @"name":@"table",
-//        @"preference":@58.99,
-//      } completion:^(NSError * _Nullable error) {
-//        if (error != nil) {
-//          NSLog(@"Error adding document: %@", error);
-//        } else {
-//          NSLog(@"Document added with ID: %@", uid);
-//        }
-//      }];
-//}
-//
-//- (IBAction)upload_plan:(id)sender {
-//    FIRUser *user = [FIRAuth auth].currentUser;
-//    if (!user) {
-//        NSLog(@"not signed in");
-//        return;
-//    }
-//    NSString* uid = user.uid;
-//
-//    FIRFirestore *db = [FIRFirestore firestore];
-//    FIRCollectionReference * plan = [[[db collectionWithPath:@"budget-management"] documentWithPath:uid] collectionWithPath:@"wishlist"];
-//    [plan addDocumentWithData:@{
-//        @"url": @"https://www.amazon.com/dp/B08JQ97KJ6/?coliid=I3FS5N7VPJY6R2&colid=32R1W59E0VC5F&ref_=lv_cv_lig_dp_it&th=1",
-//        @"price": @45.99,
-//        @"name":@"Led",
-//        @"preference":@2,
-//      } completion:^(NSError * _Nullable error) {
-//        if (error != nil) {
-//          NSLog(@"Error adding document: %@", error);
-//        } else {
-//          NSLog(@"Document added with ID: %@", uid);
-//        }
-//      }];
-//}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

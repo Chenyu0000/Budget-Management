@@ -17,7 +17,7 @@ exports.onBoughtItemCreate = functions.firestore.document(boughtPath).onCreate((
       functions.logger.info("Document data:", doc.data());
       const budgetData = doc.data();
       const current = budgetData.current - data.price;
-      functions.logger.info(`${userId} create bought item ${data.price}, decrease budget from ${budgetData.current} to ${budgetData.current - data.price}`);
+      functions.logger.info(`${userId} create bought item ${data.name}, decrease budget from ${budgetData.current} to ${budgetData.current - data.price}`);
       database.doc(budgetPath+"/"+month).update({current: current});
       database.doc("analytics/bought").get().then((doc) => {
         database.doc("analytics/bought").update({count: doc.data().count+1, price: doc.data().price+data.price});
@@ -62,8 +62,7 @@ exports.getAnalytics = functions.https.onRequest((req, res) => {
             The application has been started ${launchDoc.data().count} tiems
             ${boughtDoc.data().count} bought items are created with $${boughtDoc.data().price} price in total
             ${wishDoc.data().count} wish items are created with $${wishDoc.data().price} price in total
-            The ratio of total prices in bough items to total prices in wishlist ${ratioDoc.data().bought_wishlist}\n
-            `;
+            The ratio of total prices in bough items to total prices in wishlist ${ratioDoc.data().bought_wishlist}\n`;
             res.status(200).send(message);
           });
         });
